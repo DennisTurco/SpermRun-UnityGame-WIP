@@ -1,4 +1,4 @@
-# Unity Project
+# Sperm Run
 
 
 ## Commit Description
@@ -19,15 +19,9 @@ The project adhere to the semantic commit convention.
 - **test**: Adding missing tests or correcting existing tests
 - **revert**: Revert a previous commit. Please add a reference to reverted commit (Refs: a215868)
 
-## Licence
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-
 ## Authors
 
 - [@DennisTurco](https://www.github.com/DennisTurco)
-- [@Toghiri](https://www.github.com/Toghiti)
-- [@Zambodev](https://www.github.com/Zambodev)
 
 
 ## Support
