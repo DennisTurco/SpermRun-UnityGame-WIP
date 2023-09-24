@@ -1,58 +1,57 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class RandomPositionBorderObstacle : MonoBehaviour
 {
-    // Used to randomly generate X offset
-    public float minPosX = -5.6f;
-    public float maxPosX = -5.6f;
-    // Used to randomly generate Y offset
-    public float minPosY = 5.16f;
-    public float maxPosY = 5.16f;
-    // Used to set a random spawn frequency
-    public float minSpawnTime = 5f;
-    public float maxSpawnTime = 20f;
-    // The pool of objects we want to spawn
-    public GameObject[] objectsPool;
-    // Number of elements to spawn: negative means infinite
-    public int elemToSpawn = -1;
+    [Header("Obstacles Spawn Settings")]
+    [SerializeField] private float spawnRateMinTime = 1f;
+    [SerializeField] private float spawnRateMaxTime = 5f;
+    [SerializeField] private GameObject[] objectsPool;
+    [SerializeField] private Vector2 LeftObstaclesPos;
+    [SerializeField] private Vector2 RightObstaclesPos;
+    [SerializeField] private bool canSpawn = true;
 
-    int elemCounter;
-    Queue<GameObject> objectsQueue;
+    [Header("Obstacles Spawn Limits Settings")]
+    [SerializeField] private bool enemyToSpawnLimit;
+    [SerializeField] private int enemyToSpawn = -1; // Number of elements to spawn: negative means infinite
+    [SerializeField] private int enemySpawned;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
-        // Populate queue
-        objectsQueue = new Queue<GameObject>();
-        foreach (GameObject go in objectsPool)
+        enemySpawned = 0;
+
+        StartCoroutine(Spawner());
+    }
+
+    private IEnumerator Spawner()
+    {
+        WaitForSeconds wait = new WaitForSeconds(UnityEngine.Random.Range(spawnRateMinTime, spawnRateMaxTime));
+
+        while (canSpawn && objectsPool.Length > 0)
         {
-            objectsQueue.Enqueue(go);
+            if (enemyToSpawnLimit && enemySpawned >= enemyToSpawn)
+            {
+                GameManager.Instance.SetGameFinished();
+                yield break;
+            }
+
+            yield return wait;
+
+
+            // check type of obstacle and spawn it
+            int rand = UnityEngine.Random.Range(0, objectsPool.Length);
+            Vector2 position;
+            
+            if (objectsPool[rand].CompareTag("LeftObstacle")) position = new Vector2(LeftObstaclesPos.x, LeftObstaclesPos.y);
+            else if (objectsPool[rand].CompareTag("RightObstacle")) position = new Vector2(RightObstaclesPos.x, RightObstaclesPos.y);
+            else throw new Exception("Invalid or missing tag to the object");
+
+            GameObject enemyObject = Instantiate(objectsPool[rand], position, Quaternion.identity);
+
+            Debug.Log($"Object spawned at position: ({position.x}, {position.y})");
+            enemySpawned++;
         }
-        Invoke("Spawn", Random.Range(minSpawnTime, maxSpawnTime));
     }
-
-    // This is called recursevly to spawn an object
-    void Spawn()
-    {
-        if ((elemToSpawn < 0 || elemCounter++ <= elemToSpawn) && objectsQueue.Count > 0)
-        {
-            GameObject objectToSpawn = objectsQueue.Dequeue();
-            Vector3 newPos = transform.position;
-            newPos.x += Random.Range(minPosX, maxPosX);
-            newPos.y += Random.Range(minPosY, maxPosY);
-            objectToSpawn.transform.position = newPos;
-            objectToSpawn.SetActive(true);
-        }
-        Invoke("Spawn", Random.Range(minSpawnTime, maxSpawnTime));
-    }
-
-    // Requeue object
-    public void RequeueObject(GameObject obj)
-    {
-        obj.SetActive(false);
-        objectsQueue.Enqueue(obj);
-    }
-
 }
