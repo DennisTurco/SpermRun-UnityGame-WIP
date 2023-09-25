@@ -10,6 +10,8 @@ public class RandomPositionBorderObstacle : MonoBehaviour
     [SerializeField] private GameObject[] objectsPool;
     [SerializeField] private Vector2 LeftObstaclesPos;
     [SerializeField] private Vector2 RightObstaclesPos;
+    [SerializeField] private Vector2 CenterObstaclesMinPos;
+    [SerializeField] private Vector2 CenterObstaclesMaxPos;
     [SerializeField] private bool canSpawn = true;
 
     [Header("Obstacles Spawn Limits Settings")]
@@ -43,9 +45,10 @@ public class RandomPositionBorderObstacle : MonoBehaviour
             // check type of obstacle and spawn it
             int rand = UnityEngine.Random.Range(0, objectsPool.Length);
             Vector2 position;
-            
+
             if (objectsPool[rand].CompareTag("LeftObstacle")) position = new Vector2(LeftObstaclesPos.x, LeftObstaclesPos.y);
             else if (objectsPool[rand].CompareTag("RightObstacle")) position = new Vector2(RightObstaclesPos.x, RightObstaclesPos.y);
+            else if (objectsPool[rand].CompareTag("CenterObstacle")) position = new Vector2(UnityEngine.Random.Range(CenterObstaclesMinPos.x, CenterObstaclesMaxPos.x), CenterObstaclesMaxPos.y);
             else throw new Exception("Invalid or missing tag to the object");
 
             GameObject enemyObject = Instantiate(objectsPool[rand], position, Quaternion.identity);
