@@ -753,6 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f4609a886c43442832099cb37d6c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
   GameisOver: 0
   GameisFinished: 0
   scroolSpeed: 0
@@ -5514,6 +5515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1901040108}
   - component: {fileID: 1901040110}
+  - component: {fileID: 1901040111}
   - component: {fileID: 1901040109}
   m_Layer: 5
   m_Name: Text (1)
@@ -5639,6 +5641,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901040107}
   m_CullTransparentMesh: 1
+--- !u!114 &1901040111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901040107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c9c1aa3d668c64582f020a21188b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1901040109}
 --- !u!1 &1950392942
 GameObject:
   m_ObjectHideFlags: 0

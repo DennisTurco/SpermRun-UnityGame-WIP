@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     // references
-    private TextMeshPro scoreText;
+    [SerializeField] private TextMeshPro scoreText;
 
     // states
     [Header("States")]
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     public int UpdateAndGetScore(int score)
     {
         this.score += score;
-        return score;
+        return this.score;
     }
+    public int GetScore() { return score; }
 }
