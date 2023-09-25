@@ -25,8 +25,7 @@ public class Obstacle : MonoBehaviour
         if (transform.position.y < screenBounds.y)
         {
             // update score
-
-
+            GameManager.Instance.UpdateAndGetScore(10); // every obstacle passed, increment by 10 points
 
             Destroy(this.gameObject);
         }

@@ -10,7 +10,7 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        GameManager.Instance.UpdateScore(0);
+        GameManager.Instance.UpdateAndGetScore(0);
         text.text = "Score: 0";
 
         StartCoroutine("IncrementScore");
@@ -27,6 +27,7 @@ public class Score : MonoBehaviour
 
     private void UpdateScoreText(int score)
     {
-        text.text = "Score: " + GameManager.Instance.UpdateScore(score);
+        text.text = "Score: " + GameManager.Instance.UpdateAndGetScore(score);
+        Debug.Log($"Score: {GameManager.Instance.UpdateAndGetScore(score)}");
     }
 }

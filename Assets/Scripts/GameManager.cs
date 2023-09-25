@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         GameisFinished = true;
         Debug.Log("Game Finished, You won!");
     }
-    public int UpdateScore(int score)
+    public int UpdateAndGetScore(int score)
     {
         this.score += score;
         return score;
