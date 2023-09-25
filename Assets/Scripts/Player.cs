@@ -26,6 +26,11 @@ public class Player : MonoBehaviour
     public void PlayerDie()
     {
         gameObject.SetActive(false);
+
+        //TODO: set particles on death
+
+
+
         GameManager.Instance.SetGameOver();
     }
 }

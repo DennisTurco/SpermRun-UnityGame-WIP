@@ -1312,7 +1312,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52dddce6f63dc041869a4450006fd09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -5
+  scrollSpeed: 3
+  incrementSpeed: 0.8
+  timeBeforeIncrementSpeed: 10
   startPos: {x: 0, y: 0}
 --- !u!1 &361400719
 GameObject:
@@ -3388,7 +3390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52dddce6f63dc041869a4450006fd09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -5
+  scrollSpeed: 3
+  incrementSpeed: 0.8
+  timeBeforeIncrementSpeed: 10
   startPos: {x: 0, y: 0}
 --- !u!212 &1182204131
 SpriteRenderer:

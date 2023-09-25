@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     }
     public int UpdateAndGetScore(int score)
     {
-        this.score += score;
+        this.score += score * ((int)scroolSpeed);
         return this.score;
     }
     public int GetScore() { return score; }

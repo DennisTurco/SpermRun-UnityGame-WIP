@@ -5,8 +5,8 @@ using UnityEngine;
 public class RandomPositionBorderObstacle : MonoBehaviour
 {
     [Header("Obstacles Spawn Settings")]
-    [SerializeField] private float spawnRateMinTime = 1f;
-    [SerializeField] private float spawnRateMaxTime = 5f;
+    [SerializeField] private float spawnRateMinTime;
+    [SerializeField] private float spawnRateMaxTime;
     [SerializeField] private GameObject[] objectsPool;
     [SerializeField] private Vector2 LeftObstaclesPos;
     [SerializeField] private Vector2 RightObstaclesPos;

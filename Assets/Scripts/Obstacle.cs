@@ -16,7 +16,7 @@ public class Obstacle : MonoBehaviour
     private void Update()
     {
         // get speed
-        moveSpeed = GameManager.Instance.GetScroolSpeed();
+        moveSpeed = -GameManager.Instance.GetScroolSpeed();
 
         // move the obstacle
         rb.velocity = new Vector2(0, moveSpeed);
