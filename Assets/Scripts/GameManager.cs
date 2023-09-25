@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     // references
-
+    private TextMeshPro scoreText;
 
     // states
     [Header("States")]
@@ -38,16 +39,15 @@ public class GameManager : MonoBehaviour
 
 
     //Gameover panel
-    public void GameOver()
+    private void GameOver()
     {
-        /*
         UIManager _ui = GetComponent<UIManager>();
         if (_ui != null)
         {
             _ui.ToggleDeathPanel();
         }
+
         GameisOver = true;
-        */
     }
 
     // GETTER & SETTER
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     public void SetScroolSpeed(float scroolSpeed) { this.scroolSpeed = scroolSpeed; }
     public void SetGameOver()
     {
-        GameisOver = true;
+        GameOver();
         Debug.Log("GameOver");
     }
     public void SetGameFinished()
@@ -65,8 +65,9 @@ public class GameManager : MonoBehaviour
         GameisFinished = true;
         Debug.Log("Game Finished, You won!");
     }
-    public void UpdateScore(int score)
+    public int UpdateScore(int score)
     {
         this.score += score;
+        return score;
     }
 }

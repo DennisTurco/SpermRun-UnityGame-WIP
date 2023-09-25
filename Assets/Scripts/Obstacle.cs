@@ -36,7 +36,7 @@ public class Obstacle : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
-            GameManager.Instance.SetGameOver();
+            player.PlayerDie();
         }
     }
 }

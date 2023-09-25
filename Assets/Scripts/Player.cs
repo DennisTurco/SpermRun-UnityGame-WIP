@@ -22,4 +22,10 @@ public class Player : MonoBehaviour
         float X = Input.GetAxis("Horizontal");
         player.velocity = new Vector2(X, 0) * movespeed;    
     }
+
+    public void PlayerDie()
+    {
+        gameObject.SetActive(false);
+        GameManager.Instance.SetGameOver();
+    }
 }
