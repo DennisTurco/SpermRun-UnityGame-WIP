@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [Header("Data")]
     public float scroolSpeed;
     public int score;
+    public int highScore;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         GameisFinished = false;
 
         score = 0;
+        highScore = PlayerPrefs.GetInt("highScore");
     }
 
     // Save state
@@ -48,6 +50,14 @@ public class GameManager : MonoBehaviour
         }
 
         GameisOver = true;
+
+        // update high score
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("highScore", highScore);
+            PlayerPrefs.Save();
+        }
     }
 
     // GETTER & SETTER
@@ -71,4 +81,5 @@ public class GameManager : MonoBehaviour
         return this.score;
     }
     public int GetScore() { return score; }
+    public int GetHighScore() { return highScore; }
 }
