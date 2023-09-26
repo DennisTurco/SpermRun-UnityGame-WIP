@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
         //TODO: set particles on death
 
 
-
         GameManager.Instance.SetGameOver();
     }
 }
