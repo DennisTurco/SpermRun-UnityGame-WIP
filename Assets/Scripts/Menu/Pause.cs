@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
@@ -11,9 +9,7 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-           
-                Paused();
- 
+            Paused();
         }
     }
 
@@ -33,6 +29,6 @@ public class Pause : MonoBehaviour
 
     public void LoadMenu()
     {
-    Debug.Log("Loading Menu...");
+        Debug.Log("Loading Menu...");
     } 
 }

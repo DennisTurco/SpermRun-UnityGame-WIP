@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -59,6 +60,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+
+    
 
     // GETTER & SETTER
     public bool IsGameOver() { return GameisOver; }

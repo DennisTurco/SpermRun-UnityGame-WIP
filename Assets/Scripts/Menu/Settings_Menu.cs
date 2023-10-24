@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Settings_Menu : MonoBehaviour
 {
-
     Resolution[] resolutions;
     public Dropdown resolutionDropdown;
 
@@ -25,6 +23,4 @@ public class Settings_Menu : MonoBehaviour
 
         resolutionDropdown.AddOptions(options);
     }
-
-
 }
