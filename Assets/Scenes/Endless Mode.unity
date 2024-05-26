@@ -156,7 +156,7 @@ Transform:
   - {fileID: 302842351}
   - {fileID: 1182204132}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &34206278
 MonoBehaviour:
@@ -315,7 +315,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69721383
 GameObject:
@@ -750,7 +750,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 940869c8de2a1e5418d1f6e423772d96, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1642,9 +1642,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 56897219}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayOneShot
+      - m_Target: {fileID: 1815652353}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayButtonSound
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: aea86960d8a8b1842961a02d30038b5a,
@@ -2554,7 +2554,7 @@ Transform:
   - {fileID: 944539613}
   - {fileID: 1218354411}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &623695895
 GameObject:
@@ -4314,7 +4314,7 @@ RectTransform:
   - {fileID: 1434616718}
   - {fileID: 1359526967}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4405,19 +4405,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 56897219}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayOneShot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: aea86960d8a8b1842961a02d30038b5a,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1070179642}
         m_TargetAssemblyTypeName: VolumeToggle, Assembly-CSharp
         m_MethodName: ToggleVolume
@@ -4425,6 +4412,19 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1815652353}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayButtonSound
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: aea86960d8a8b1842961a02d30038b5a,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4483,7 +4483,6 @@ MonoBehaviour:
   volumeOn: {fileID: 21300000, guid: 8384fda8dfe32c1469d42babe0a98511, type: 3}
   volumeOff: {fileID: 21300000, guid: efe1c3ffd6cf6664bbc153df5d19a28e, type: 3}
   volumeButton: {fileID: 1070179639}
-  state: 0
 --- !u!1 &1116583950
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,9 +4579,9 @@ MonoBehaviour:
           m_StringArgument: MainMenu
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 56897219}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayOneShot
+      - m_Target: {fileID: 1815652353}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayButtonSound
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: aea86960d8a8b1842961a02d30038b5a,
@@ -5388,7 +5387,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1434616716
 GameObject:
@@ -5406,7 +5405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1434616717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5859,7 +5858,7 @@ GameObject:
   - component: {fileID: 1552504117}
   - component: {fileID: 1552504116}
   - component: {fileID: 1552504115}
-  - component: {fileID: 1552504114}
+  - component: {fileID: 1552504118}
   m_Layer: 5
   m_Name: Music Button
   m_TagString: Untagged
@@ -5887,22 +5886,6 @@ RectTransform:
   m_AnchoredPosition: {x: 386, y: -123}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1552504114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552504112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19d63cfa8e4fa64c93eaaf95b027364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeOn: {fileID: 21300000, guid: fa8701722c2706549a58665e7ad4936b, type: 3}
-  volumeOff: {fileID: 21300000, guid: 719add5b510280641b158d32b41d005f, type: 3}
-  volumeButton: {fileID: 1552504115}
-  state: 0
 --- !u!114 &1552504115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5947,26 +5930,26 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 56897219}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayOneShot
-        m_Mode: 2
+      - m_Target: {fileID: 1552504118}
+        m_TargetAssemblyTypeName: MusicToggle, Assembly-CSharp
+        m_MethodName: ToggleMusic
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: aea86960d8a8b1842961a02d30038b5a,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1552504114}
-        m_TargetAssemblyTypeName: VolumeToggle, Assembly-CSharp
-        m_MethodName: ToggleVolume
-        m_Mode: 1
+      - m_Target: {fileID: 1815652353}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayButtonSound
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8300000, guid: aea86960d8a8b1842961a02d30038b5a,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6010,6 +5993,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552504112}
   m_CullTransparentMesh: 0
+--- !u!114 &1552504118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552504112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8b433ee2627a14b9dd4d6b732700af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicOn: {fileID: 21300000, guid: fa8701722c2706549a58665e7ad4936b, type: 3}
+  musicOff: {fileID: 21300000, guid: 719add5b510280641b158d32b41d005f, type: 3}
+  musicButton: {fileID: 1552504115}
 --- !u!1 &1554711242
 GameObject:
   m_ObjectHideFlags: 0
@@ -6571,7 +6569,7 @@ Transform:
   - {fileID: 165759969}
   - {fileID: 1972311350}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1815652353
 MonoBehaviour:
@@ -7044,7 +7042,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aea86960d8a8b1842961a02d30038b5a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -7698,7 +7696,7 @@ PrefabInstance:
     - target: {fileID: 5825116310401558885, guid: 11466c9b10ac44f45826886e3a159110,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5825116310401558885, guid: 11466c9b10ac44f45826886e3a159110,
         type: 3}
