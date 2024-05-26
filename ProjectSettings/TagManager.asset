@@ -8,6 +8,7 @@ TagManager:
   - LeftObstacle
   - RightObstacle
   - CenterObstacle
+  - Coin
   layers:
   - Default
   - TransparentFX

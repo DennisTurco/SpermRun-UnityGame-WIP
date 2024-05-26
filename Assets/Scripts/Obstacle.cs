@@ -33,6 +33,24 @@ public class Obstacle : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (this.gameObject.CompareTag("Coin"))
+        {
+            CollectCoin();
+        }
+        else
+        {
+            ObstacleCollision(collision);
+        }
+    }
+
+    private void CollectCoin()
+    {
+        SoundManager.Instance.PlayCoinSound();
+        Destroy(this.gameObject);
+    }
+
+    private void ObstacleCollision(Collision2D collision)
+    {
         if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
             player.PlayerDie();

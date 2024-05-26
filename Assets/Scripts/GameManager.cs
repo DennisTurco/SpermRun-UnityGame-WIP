@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public float scroolSpeed;
     public int score;
     public int highScore;
+    public int coins;
 
     private void Awake()
     {

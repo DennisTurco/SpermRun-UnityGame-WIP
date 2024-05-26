@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioSource musicSound;
     [SerializeField] private AudioSource buttonSound;
+    [SerializeField] private AudioSource coinSound;
     private int musicPlaying;
     private int volumePlaying;
 
@@ -42,10 +43,15 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void PlayButtonSound(AudioClip clip)
+    public void PlayButtonSound()
     {
         if (volumePlaying == 1)
-            buttonSound.PlayOneShot(clip);
+            buttonSound.PlayOneShot(buttonSound.clip);
+    }
+    public void PlayCoinSound()
+    {
+        if (volumePlaying == 1)
+            coinSound.PlayOneShot(coinSound.clip);
     }
 
     public void MusicOn() 

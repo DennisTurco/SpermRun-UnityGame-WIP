@@ -49,11 +49,12 @@ public class RandomPositionBorderObstacle : MonoBehaviour
             if (objectsPool[rand].CompareTag("LeftObstacle")) position = new Vector2(LeftObstaclesPos.x, LeftObstaclesPos.y);
             else if (objectsPool[rand].CompareTag("RightObstacle")) position = new Vector2(RightObstaclesPos.x, RightObstaclesPos.y);
             else if (objectsPool[rand].CompareTag("CenterObstacle")) position = new Vector2(UnityEngine.Random.Range(CenterObstaclesMinPos.x, CenterObstaclesMaxPos.x), CenterObstaclesMaxPos.y);
+            else if (objectsPool[rand].CompareTag("Coin")) position = new Vector2(UnityEngine.Random.Range(CenterObstaclesMinPos.x, CenterObstaclesMaxPos.x), CenterObstaclesMaxPos.y);
             else throw new Exception("Invalid or missing tag to the object");
 
             GameObject enemyObject = Instantiate(objectsPool[rand], position, Quaternion.identity);
 
-            Debug.Log($"Object spawned at position: ({position.x}, {position.y})");
+            Debug.Log($"Object {objectsPool[rand].tag} spawned at position: ({position.x}, {position.y})");
             enemySpawned++;
         }
     }
