@@ -8,7 +8,7 @@ public class SetMusicVolume : MonoBehaviour
 
     private void Start()
     {
-        LoadVolume();
+        //LoadVolume();
     }
 
     public void SetLevel(float sliderValue)
