@@ -413,9 +413,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 56897219}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayOneShot
+      - m_Target: {fileID: 1815652353}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayButtonSound
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: aea86960d8a8b1842961a02d30038b5a,
@@ -6104,9 +6104,9 @@ MonoBehaviour:
           m_StringArgument: MainMenu
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 56897219}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayOneShot
+      - m_Target: {fileID: 1815652353}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayButtonSound
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: aea86960d8a8b1842961a02d30038b5a,
