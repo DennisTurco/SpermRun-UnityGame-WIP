@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RandomPositionBorderPicks : MonoBehaviour
@@ -7,7 +9,8 @@ public class RandomPositionBorderPicks : MonoBehaviour
     [Header("Picks Spawn Settings")]
     [SerializeField] private float spawnRateMinTime;
     [SerializeField] private float spawnRateMaxTime;
-    [SerializeField] private GameObject[] objectsPool;
+    [SerializeField] private List<GameObject> objects;
+    [SerializeField] private List<float> probabilities;
     [SerializeField] private Vector2 CenterPickMinPos;
     [SerializeField] private Vector2 CenterPickMaxPos;
     [SerializeField] private bool canSpawn = true;
@@ -17,19 +20,22 @@ public class RandomPositionBorderPicks : MonoBehaviour
     [SerializeField] private int pickToSpawn = -1; // Number of elements to spawn: negative means infinite
     [SerializeField] private int pickSpawned;
 
-    // Use this for initialization
     private void Start()
     {
         pickSpawned = 0;
+
+        if (objects.Count != probabilities.Count)
+        {
+            Debug.LogError("Objects count and probabilities count do not match.");
+            return;
+        }
 
         StartCoroutine(Spawner());
     }
 
     private IEnumerator Spawner()
     {
-        WaitForSeconds wait = new WaitForSeconds(UnityEngine.Random.Range(spawnRateMinTime, spawnRateMaxTime));
-
-        while (canSpawn && objectsPool.Length > 0)
+        while (canSpawn && objects.Count > 0)
         {
             if (pickToSpawnLimit && pickSpawned >= pickToSpawn)
             {
@@ -37,20 +43,39 @@ public class RandomPositionBorderPicks : MonoBehaviour
                 yield break;
             }
 
-            yield return wait;
+            float waitTime = UnityEngine.Random.Range(spawnRateMinTime, spawnRateMaxTime);
+            yield return new WaitForSeconds(waitTime);
 
+            GameObject pickObject = GetRandomObject();
+            if (pickObject == null) continue;
 
-            // check type of pick and spawn it
-            int rand = UnityEngine.Random.Range(0, objectsPool.Length);
             Vector2 position;
-
-            if (objectsPool[rand].CompareTag("Coin")) position = new Vector2(UnityEngine.Random.Range(CenterPickMinPos.x, CenterPickMaxPos.x), CenterPickMaxPos.y);
+            if (pickObject.CompareTag("Coin")) position = new Vector2(UnityEngine.Random.Range(CenterPickMinPos.x, CenterPickMaxPos.x), CenterPickMaxPos.y);
+            else if (pickObject.CompareTag("Syringe")) position = new Vector2(UnityEngine.Random.Range(CenterPickMinPos.x, CenterPickMaxPos.x), CenterPickMaxPos.y);
+            else if (pickObject.CompareTag("Redbull")) position = new Vector2(UnityEngine.Random.Range(CenterPickMinPos.x, CenterPickMaxPos.x), CenterPickMaxPos.y);
             else throw new Exception("Invalid or missing tag to the object");
 
-            GameObject pickObject = Instantiate(objectsPool[rand], position, Quaternion.identity);
+            Instantiate(pickObject, position, Quaternion.identity);
 
-            Debug.Log($"Object {objectsPool[rand].tag} spawned at position: ({position.x}, {position.y})");
+            Debug.Log($"Object {pickObject.tag} spawned at position: ({position.x}, {position.y})");
             pickSpawned++;
         }
+    }
+
+    private GameObject GetRandomObject()
+    {
+        float totalProbability = probabilities.Sum();
+        float randomPoint = UnityEngine.Random.value * totalProbability;
+
+        for (int i = 0; i < probabilities.Count; i++)
+        {
+            if (randomPoint < probabilities[i])
+            {
+                return objects[i];
+            }
+            randomPoint -= probabilities[i];
+        }
+
+        return null; // Shouldn't happen
     }
 }

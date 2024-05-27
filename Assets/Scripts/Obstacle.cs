@@ -31,29 +31,35 @@ public class Obstacle : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (this.gameObject.CompareTag("Coin"))
+        if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
-            CollectCoin();
-        }
-        else
-        {
-            ObstacleCollision(collision);
+            if (this.gameObject.CompareTag("Virus"))
+            {
+                VirusCollision(collision);
+            }
+            else
+            {
+                ObstacleCollision(collision);
+            }
         }
     }
 
-    private void CollectCoin()
-    {
-        SoundManager.Instance.PlayCoinSound();
-        Destroy(this.gameObject);
-    }
-
-    private void ObstacleCollision(Collision2D collision)
+    private void ObstacleCollision(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
             player.PlayerDie();
+        }
+    }
+    private void VirusCollision(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<Player>(out Player player))
+        {
+            Destroy(this.gameObject);
+            SoundManager.Instance.PlayVirusSound();
+            player.SetPlayerConfusionOn();
         }
     }
 }

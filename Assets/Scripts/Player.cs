@@ -1,19 +1,18 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float movespeed = 10;
     [SerializeField] private Rigidbody2D player;
     [SerializeField] private ParticleSystem particlesOnDeath;
+    private bool powerup;
 
-    // Start is called before the first frame update
     private void Start()
     {
         player = this.GetComponent<Rigidbody2D>();
+        powerup = false;
     }
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
         MovePlayer();
@@ -22,11 +21,16 @@ public class Player : MonoBehaviour
     private void MovePlayer()
     {
         float X = Input.GetAxis("Horizontal");
-        player.velocity = new Vector2(X, 0) * movespeed;    
+        player.velocity = new Vector2(X, 0) * movespeed;
     }
 
     public void PlayerDie()
     {
+        if (powerup)
+        {
+            return;
+        }
+
         // play particles
         if (particlesOnDeath != null)
             particlesOnDeath.Play();
@@ -34,7 +38,26 @@ public class Player : MonoBehaviour
         // destroy object
         //gameObject.SetActive(false);
 
+        SoundManager.Instance.PlayDeathSound();
         GameManager.Instance.SetGameOver();
     }
 
+    public void SetPlayerConfusionOn()
+    {
+        GameManager.Instance.SetConfusionOn();
+        Invoke(nameof(SetPlayerConfusionOff), 10f);  // invoke the method after 10 seconds
+    }
+    public void SetPlayerConfusionOff()
+    {
+        GameManager.Instance.SetConfusionOff();
+    }
+    public void SetPlayerPowerupOn()
+    {
+        powerup = true;
+        Invoke(nameof(SetPlayerPowerupOff), 5f);  // invoke the method after 5 seconds
+    }
+    public void SetPlayerPowerupOff()
+    {
+        powerup = false;
+    }
 }

@@ -18,6 +18,9 @@ public class GetScore : MonoBehaviour
                 case ScoreType.HighScore:
                     text.text = "High Score: " + GameManager.Instance.GetHighScore();
                     break;
+                case ScoreType.CoinsCollected:
+                    text.text = "Coins Collected: " + GameManager.Instance.GetCoinsCollected();
+                    break;
                 default:
                     break;
             }
@@ -29,5 +32,6 @@ public class GetScore : MonoBehaviour
 enum ScoreType
 {
     CurrentScore,
-    HighScore
+    HighScore,
+    CoinsCollected
 }

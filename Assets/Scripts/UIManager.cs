@@ -2,12 +2,33 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject deathPanel;
+    public static UIManager Instance;
 
-    //Show and hide the death panel
+    [SerializeField] private GameObject deathPanel;
+    [SerializeField] private GameObject scoreText;
+    [SerializeField] private GameObject coinText;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    //Show and hide UI panels
     public void ToggleDeathPanel()
     {
         Time.timeScale = 0f;
         deathPanel.SetActive(!deathPanel.activeSelf);
+        SetGamePanelsOff();
+    }
+
+    public void SetGamePanelsOn()
+    {
+        scoreText.SetActive(true);
+        coinText.SetActive(true);
+    }
+    public void SetGamePanelsOff()
+    {
+        scoreText.SetActive(false);
+        coinText.SetActive(false);
     }
 }

@@ -7,7 +7,6 @@ public class Score : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private float timeBeforeIncrementScore;
 
-    // Start is called before the first frame update
     private void Start()
     {
         GameManager.Instance.UpdateAndGetScore(0);
@@ -27,7 +26,8 @@ public class Score : MonoBehaviour
 
     private void UpdateScoreText(int score)
     {
-        text.text = "Score: " + GameManager.Instance.UpdateAndGetScore(score);
-        Debug.Log($"Score: {GameManager.Instance.UpdateAndGetScore(score)}");
+        var value = GameManager.Instance.UpdateAndGetScore(score);
+        text.text = "Score: " + value;
+        Debug.Log($"Score: {value}");
     }
 }

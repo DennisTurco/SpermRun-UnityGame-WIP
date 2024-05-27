@@ -7,6 +7,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource musicSound;
     [SerializeField] private AudioSource buttonSound;
     [SerializeField] private AudioSource coinSound;
+    [SerializeField] private AudioSource virusSound;
+    [SerializeField] private AudioSource syringeSound;
+    [SerializeField] private AudioSource deathSound;
+    [SerializeField] private AudioSource redbullSound;
     private int musicPlaying;
     private int volumePlaying;
 
@@ -52,6 +56,26 @@ public class SoundManager : MonoBehaviour
     {
         if (volumePlaying == 1)
             coinSound.PlayOneShot(coinSound.clip);
+    }
+    public void PlayVirusSound()
+    {
+        if (volumePlaying == 1)
+            virusSound.PlayOneShot(virusSound.clip);
+    }
+    public void PlaySyringeSound()
+    {
+        if (volumePlaying == 1)
+            syringeSound.PlayOneShot(syringeSound.clip);
+    }
+    public void PlayRedbullSound()
+    {
+        if (volumePlaying == 1)
+            redbullSound.PlayOneShot(redbullSound.clip);
+    }
+    public void PlayDeathSound()
+    {
+        if (volumePlaying == 1)
+            deathSound.PlayOneShot(deathSound.clip);
     }
 
     public void MusicOn() 

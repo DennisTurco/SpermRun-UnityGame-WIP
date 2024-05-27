@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RandomPositionBorderObstacle : MonoBehaviour
@@ -7,7 +9,8 @@ public class RandomPositionBorderObstacle : MonoBehaviour
     [Header("Obstacles Spawn Settings")]
     [SerializeField] private float spawnRateMinTime;
     [SerializeField] private float spawnRateMaxTime;
-    [SerializeField] private GameObject[] objectsPool;
+    [SerializeField] private List<GameObject> objects;
+    [SerializeField] private List<float> probabilities;
     [SerializeField] private Vector2 LeftObstaclesPos;
     [SerializeField] private Vector2 RightObstaclesPos;
     [SerializeField] private Vector2 CenterObstaclesMinPos;
@@ -19,19 +22,22 @@ public class RandomPositionBorderObstacle : MonoBehaviour
     [SerializeField] private int enemyToSpawn = -1; // Number of elements to spawn: negative means infinite
     [SerializeField] private int enemySpawned;
 
-    // Use this for initialization
     private void Start()
     {
         enemySpawned = 0;
+
+        if (objects.Count != probabilities.Count)
+        {
+            Debug.LogError("Objects count and probabilities count do not match.");
+            return;
+        }
 
         StartCoroutine(Spawner());
     }
 
     private IEnumerator Spawner()
     {
-        WaitForSeconds wait = new WaitForSeconds(UnityEngine.Random.Range(spawnRateMinTime, spawnRateMaxTime));
-
-        while (canSpawn && objectsPool.Length > 0)
+        while (canSpawn && objects.Count > 0)
         {
             if (enemyToSpawnLimit && enemySpawned >= enemyToSpawn)
             {
@@ -39,23 +45,41 @@ public class RandomPositionBorderObstacle : MonoBehaviour
                 yield break;
             }
 
-            yield return wait;
+            float waitTime = UnityEngine.Random.Range(spawnRateMinTime, spawnRateMaxTime);
+            yield return new WaitForSeconds(waitTime);
 
+            GameObject obstacle = GetRandomObject();
+            if (obstacle == null) continue;
 
-            // check type of obstacle and spawn it
-            int rand = UnityEngine.Random.Range(0, objectsPool.Length);
             Vector2 position;
 
-            if (objectsPool[rand].CompareTag("LeftObstacle")) position = new Vector2(LeftObstaclesPos.x, LeftObstaclesPos.y);
-            else if (objectsPool[rand].CompareTag("RightObstacle")) position = new Vector2(RightObstaclesPos.x, RightObstaclesPos.y);
-            else if (objectsPool[rand].CompareTag("CenterObstacle")) position = new Vector2(UnityEngine.Random.Range(CenterObstaclesMinPos.x, CenterObstaclesMaxPos.x), CenterObstaclesMaxPos.y);
-            else if (objectsPool[rand].CompareTag("Coin")) position = new Vector2(UnityEngine.Random.Range(CenterObstaclesMinPos.x, CenterObstaclesMaxPos.x), CenterObstaclesMaxPos.y);
-            else throw new Exception("Invalid or missing tag to the object");
+            if (obstacle.CompareTag("LeftObstacle")) position = new Vector2(LeftObstaclesPos.x, LeftObstaclesPos.y);
+            else if (obstacle.CompareTag("RightObstacle")) position = new Vector2(RightObstaclesPos.x, RightObstaclesPos.y);
+            else if (obstacle.CompareTag("CenterObstacle")) position = new Vector2(UnityEngine.Random.Range(CenterObstaclesMinPos.x, CenterObstaclesMaxPos.x), CenterObstaclesMaxPos.y);
+            else if (obstacle.CompareTag("Virus")) position = new Vector2(UnityEngine.Random.Range(CenterObstaclesMinPos.x, CenterObstaclesMaxPos.x), CenterObstaclesMaxPos.y);
+            else throw new Exception("Invalid or missing tag on the object");
 
-            GameObject enemyObject = Instantiate(objectsPool[rand], position, Quaternion.identity);
+            Instantiate(obstacle, position, Quaternion.identity);
 
-            Debug.Log($"Object {objectsPool[rand].tag} spawned at position: ({position.x}, {position.y})");
+            Debug.Log($"Object {obstacle.tag} spawned at position: ({position.x}, {position.y})");
             enemySpawned++;
         }
+    }
+
+    private GameObject GetRandomObject()
+    {
+        float totalProbability = probabilities.Sum();
+        float randomPoint = UnityEngine.Random.value * totalProbability;
+
+        for (int i = 0; i < probabilities.Count; i++)
+        {
+            if (randomPoint < probabilities[i])
+            {
+                return objects[i];
+            }
+            randomPoint -= probabilities[i];
+        }
+
+        return null; // Shouldn't happen
     }
 }
