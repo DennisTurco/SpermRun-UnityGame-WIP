@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5825116310401558885}
   - component: {fileID: 2330264199058882541}
   - component: {fileID: 2728431206632913652}
-  - component: {fileID: 1316855053991668570}
   - component: {fileID: 644643339668006024}
+  - component: {fileID: 1316855053991668570}
   - component: {fileID: 4409374768024239762}
   - component: {fileID: 356558048588779541}
   m_Layer: 0
@@ -110,6 +110,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &644643339668006024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004276004859177163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf32ad76cb33084cad973b87b4dd1cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movespeed: 9
+  player: {fileID: 1316855053991668570}
+  particlesOnDeath: {fileID: 3018312274779101941, guid: d54c7a48f19b5f642a7585a42d92a286,
+    type: 3}
 --- !u!50 &1316855053991668570
 Rigidbody2D:
   serializedVersion: 4
@@ -136,23 +152,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &644643339668006024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7004276004859177163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf32ad76cb33084cad973b87b4dd1cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movespeed: 9
-  player: {fileID: 1316855053991668570}
-  particlesOnDeath: {fileID: 3018312274779101941, guid: d54c7a48f19b5f642a7585a42d92a286,
-    type: 3}
+  m_Constraints: 6
 --- !u!60 &4409374768024239762
 PolygonCollider2D:
   m_ObjectHideFlags: 0
