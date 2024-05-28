@@ -1,3 +1,5 @@
+using System.Drawing;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -6,11 +8,17 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject deathPanel;
     [SerializeField] private GameObject scoreText;
-    [SerializeField] private GameObject coinText;
+    [SerializeField] private GameObject coinsObject;
+    [SerializeField] private TextMeshProUGUI coinsText;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        coinsText.text = "x 0";
     }
 
     //Show and hide UI panels
@@ -24,11 +32,17 @@ public class UIManager : MonoBehaviour
     public void SetGamePanelsOn()
     {
         scoreText.SetActive(true);
-        coinText.SetActive(true);
+        coinsObject.SetActive(true);
     }
     public void SetGamePanelsOff()
     {
         scoreText.SetActive(false);
-        coinText.SetActive(false);
+        coinsObject.SetActive(false);
+    }
+
+    public void UpdateCoinsCounterText(int coins)
+    {
+        coinsText.text = "x " + coins;
+        Debug.Log($"Coins: {coins}");
     }
 }

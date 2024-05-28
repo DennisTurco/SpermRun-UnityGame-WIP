@@ -97,10 +97,10 @@ public class GameManager : MonoBehaviour
         this.score += score * ((int)scroolSpeed);
         return this.score;
     }
-    public int UpdateAndGetCoins(int currentCoins)
+    public void IncrementCoins()
     {
-        this.currentCoins += currentCoins;
-        return this.currentCoins;
+        currentCoins += 1;
+        UIManager.Instance.UpdateCoinsCounterText(currentCoins);
     }
     public int GetScore() { return score; }
     public int GetHighScore() { return highScore; }

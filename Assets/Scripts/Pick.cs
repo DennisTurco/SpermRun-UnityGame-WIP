@@ -55,7 +55,7 @@ public class Pick : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
             SoundManager.Instance.PlayCoinSound();
-            GameManager.Instance.UpdateAndGetCoins(1);
+            GameManager.Instance.IncrementCoins();
             Destroy(this.gameObject);
         }
     }

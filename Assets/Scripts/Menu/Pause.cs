@@ -20,7 +20,7 @@ public class Pause : MonoBehaviour
         GameIsPaused = false;
     }
 
-    void Paused ()
+    public void Paused ()
     {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
