@@ -22,14 +22,25 @@ public class RandomPositionBorderObstacle : MonoBehaviour
     [SerializeField] private int enemyToSpawn = -1; // Number of elements to spawn: negative means infinite
     [SerializeField] private int enemySpawned;
 
+    [Header("Spawn Time Interval Limits")]
+    [SerializeField] private List<float> spawnIntervalLimits; // List of time intervals for each object
+
+    private Dictionary<GameObject, float> lastSpawnTimes; // Dictionary to keep track of last spawn times per object
+
     private void Start()
     {
         enemySpawned = 0;
 
-        if (objects.Count != probabilities.Count)
+        if (objects.Count != probabilities.Count || objects.Count != spawnIntervalLimits.Count)
         {
-            Debug.LogError("Objects count and probabilities count do not match.");
+            Debug.LogError("Objects, probabilities, and spawn interval limits counts do not match.");
             return;
+        }
+
+        lastSpawnTimes = new Dictionary<GameObject, float>();
+        foreach (var obj in objects)
+        {
+            lastSpawnTimes[obj] = -Mathf.Infinity; // Initialize with -Infinity to allow immediate spawn at start
         }
 
         StartCoroutine(Spawner());
@@ -63,6 +74,7 @@ public class RandomPositionBorderObstacle : MonoBehaviour
 
             Debug.Log($"Object {obstacle.tag} spawned at position: ({position.x}, {position.y})");
             enemySpawned++;
+            lastSpawnTimes[obstacle] = Time.time; // Update the last spawn time for this object
         }
     }
 
@@ -75,7 +87,10 @@ public class RandomPositionBorderObstacle : MonoBehaviour
         {
             if (randomPoint < probabilities[i])
             {
-                return objects[i];
+                if (Time.time - lastSpawnTimes[objects[i]] >= spawnIntervalLimits[i]) // Check if enough time has passed since the last spawn
+                {
+                    return objects[i];
+                }
             }
             randomPoint -= probabilities[i];
         }

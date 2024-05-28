@@ -197,6 +197,14 @@ MonoBehaviour:
   enemyToSpawnLimit: 0
   enemyToSpawn: 0
   enemySpawned: 0
+  spawnIntervalLimits:
+  - 10
+  - 10
+  - 0
+  - 10
+  - 10
+  - 15
+  - 20
 --- !u!114 &34206279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +233,10 @@ MonoBehaviour:
   pickToSpawnLimit: 0
   pickToSpawn: -1
   pickSpawned: 0
+  spawnIntervalLimits:
+  - 0
+  - 15
+  - 20
 --- !u!1 &56897218
 GameObject:
   m_ObjectHideFlags: 0
