@@ -5,12 +5,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float movespeed = 10;
     [SerializeField] private Rigidbody2D player;
     [SerializeField] private ParticleSystem particlesOnDeath;
+    [SerializeField] private FlickerEffect powerupEffect;
     private bool powerup;
+    private bool confusion;
 
     private void Start()
     {
         player = this.GetComponent<Rigidbody2D>();
         powerup = false;
+        confusion = false;
     }
 
     private void FixedUpdate()
@@ -44,16 +47,22 @@ public class Player : MonoBehaviour
 
     public void SetPlayerConfusionOn()
     {
+        if (confusion)
+            return;
+
+        confusion = true;
         GameManager.Instance.SetConfusionOn();
         Invoke(nameof(SetPlayerConfusionOff), 10f);  // invoke the method after 10 seconds
     }
     public void SetPlayerConfusionOff()
     {
+        confusion = false;
         GameManager.Instance.SetConfusionOff();
     }
     public void SetPlayerPowerupOn()
     {
         powerup = true;
+        powerupEffect.StartFlicker();
         Invoke(nameof(SetPlayerPowerupOff), 5f);  // invoke the method after 5 seconds
     }
     public void SetPlayerPowerupOff()
