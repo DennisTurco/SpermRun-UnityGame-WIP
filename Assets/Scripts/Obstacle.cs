@@ -57,6 +57,11 @@ public class Obstacle : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
+            if (player.IsPowerupEnabled())
+            {
+                return;
+            }
+
             Destroy(this.gameObject);
             SoundManager.Instance.PlayVirusSound();
             player.SetPlayerConfusionOn();

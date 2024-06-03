@@ -35,9 +35,9 @@ public class Pick : MonoBehaviour
             {
                 CollectCoin(collision);
             }
-            else if (this.gameObject.CompareTag("Syringe"))
+            else if (this.gameObject.CompareTag("Life"))
             {
-                CollectSyringe(collision);
+                CollectLife(collision);
             }
             else if (this.gameObject.CompareTag("Redbull"))
             {
@@ -59,12 +59,12 @@ public class Pick : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void CollectSyringe(Collider2D collision)
+    private void CollectLife(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
-            SoundManager.Instance.PlaySyringeSound();
-            player.SetPlayerConfusionOff();
+            SoundManager.Instance.PlayLifeSound();
+            GameManager.Instance.UpdateLifes(1);
             Destroy(this.gameObject);
         }
     }

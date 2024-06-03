@@ -1,0 +1,4 @@
+repository "SpermRun@Mr_Denno@cloud"
+  path "/"
+    br "/main"
+    co "/main"

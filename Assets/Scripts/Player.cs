@@ -5,7 +5,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float movespeed = 10;
     [SerializeField] private Rigidbody2D player;
     [SerializeField] private ParticleSystem particlesOnDeath;
-    [SerializeField] private FlickerEffect powerupEffect;
+    [SerializeField] private PowerupFlickerEffect powerupEffect;
+    [SerializeField] private DamageFlickerEffect damageEffect;
     private bool powerup;
     private bool confusion;
 
@@ -29,10 +30,17 @@ public class Player : MonoBehaviour
 
     public void PlayerDie()
     {
-        if (powerup)
+        if (powerup || damageEffect.IsFlashing())
         {
             return;
         }
+
+        if (GameManager.Instance.GetLifeCount() > 0)
+        {
+            GameManager.Instance.UpdateLifes(-1);
+            damageEffect.StartFlicker();
+            return;
+        } 
 
         // play particles
         if (particlesOnDeath != null)
@@ -63,10 +71,15 @@ public class Player : MonoBehaviour
     {
         powerup = true;
         powerupEffect.StartFlicker();
-        Invoke(nameof(SetPlayerPowerupOff), 5f);  // invoke the method after 5 seconds
+        Invoke(nameof(SetPlayerPowerupOff), powerupEffect.GetTotalDuration());  // invoke the method after 5 seconds
     }
     public void SetPlayerPowerupOff()
     {
         powerup = false;
+    }
+
+    public bool IsPowerupEnabled()
+    {
+        return powerup;
     }
 }

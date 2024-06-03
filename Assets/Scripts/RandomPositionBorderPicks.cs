@@ -62,7 +62,7 @@ public class RandomPositionBorderPicks : MonoBehaviour
 
             Vector2 position;
             if (pickObject.CompareTag("Coin")) position = new Vector2(UnityEngine.Random.Range(CenterPickMinPos.x, CenterPickMaxPos.x), CenterPickMaxPos.y);
-            else if (pickObject.CompareTag("Syringe")) position = new Vector2(UnityEngine.Random.Range(CenterPickMinPos.x, CenterPickMaxPos.x), CenterPickMaxPos.y);
+            else if (pickObject.CompareTag("Life")) position = new Vector2(UnityEngine.Random.Range(CenterPickMinPos.x, CenterPickMaxPos.x), CenterPickMaxPos.y);
             else if (pickObject.CompareTag("Redbull")) position = new Vector2(UnityEngine.Random.Range(CenterPickMinPos.x, CenterPickMaxPos.x), CenterPickMaxPos.y);
             else throw new Exception("Invalid or missing tag to the object");
 

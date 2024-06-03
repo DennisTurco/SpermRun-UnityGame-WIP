@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int highScore;
     public int totalCoins;
     public int currentCoins;
+    public int lifes;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 
         score = 0;
         currentCoins = 0;
+        lifes = 0;
         highScore = PlayerPrefs.GetInt("highScore");
 
         UIManager.Instance.SetGamePanelsOn();
@@ -102,6 +104,13 @@ public class GameManager : MonoBehaviour
         currentCoins += 1;
         UIManager.Instance.UpdateCoinsCounterText(currentCoins);
     }
+    public void UpdateLifes(int life)
+    {
+        lifes += life;
+        UIManager.Instance.UpdateLifesCounterText(lifes);
+    }
+
+    public int GetLifeCount() { return lifes; }
     public int GetScore() { return score; }
     public int GetHighScore() { return highScore; }
     public int GetCoinsCollected() { return currentCoins; }

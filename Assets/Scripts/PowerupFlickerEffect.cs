@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FlickerEffect : MonoBehaviour
+public class PowerupFlickerEffect : MonoBehaviour
 {
     [Tooltip("Materials to switch between during the flash.")]
     [SerializeField] private Material[] flickerMaterials;
 
     [Tooltip("Total duration of the flicker effect.")]
-    [SerializeField] private float totalDuration = 5f;
+    [SerializeField] private float totalDuration = 7f;
 
     [Tooltip("Interval between color changes.")]
     [SerializeField] private float flickerInterval = 0.1f;
@@ -63,5 +63,10 @@ public class FlickerEffect : MonoBehaviour
 
         // Set the routine to null, signaling that it's finished.
         flickerRoutine = null;
+    }
+
+    public float GetTotalDuration()
+    {
+        return totalDuration;
     }
 }
